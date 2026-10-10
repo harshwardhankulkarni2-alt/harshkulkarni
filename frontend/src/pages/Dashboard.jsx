@@ -17,8 +17,9 @@ function Dashboard({ setLoggedIn }) {
     // =========================
 
     useEffect(() => {
+        const apiUrl = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "");
         const socket = new WebSocket(
-            "wss://taskmanager-1-lmfp.onrender.com/ws"
+            apiUrl.replace(/^http/, "ws") + "/ws"
         );
 
         socket.onopen = () => {
